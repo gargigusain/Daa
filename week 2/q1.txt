@@ -1,1 +1,73 @@
+#include<iostream>
+using namespace std;
+void binarysearch(int[],int,int,int);
+int main()
+{
+	int tc,i,j,n,lb,ub,mid,a[100];
+	cout<<"Enter the number of test cases:";
+	cin>>tc;
+	for(j=0;j<tc;j++)
+	{
+	    cout<<endl;
+    	cout<<"Enter the size of an array:";
+    	cin>>n;
+    	cout<<"Enter the element in the array";
+    	for(i=0;i<n;i++)
+    	{
+    		cin>>a[i];	
+    	}
+    	lb=0;
+    	ub=n-1;
+    	mid=(lb+ub)/2;
+    	binarysearch(a,lb,mid,ub);
+	}
 
+	return 0;
+}
+
+void binarysearch(int a[],int lb,int mid,int ub)
+{
+	int k;
+	cout<<"Enter the key to be searched:";
+	cin>>k;
+	while(a[mid]!=k)
+	{
+	    mid=(lb+ub)/2;
+	    if(k<a[mid])
+	    {
+	        ub=mid;
+	    }
+	    if(k>a[mid])
+	    {
+	        lb=mid;
+	    }
+	}
+	int c=0;
+	if(a[mid]==k)
+	{
+	   int i;
+	   for(i=mid;i<=ub;i++)
+	   {
+	       if(a[i]==k)
+	       {
+	           c++;
+	       }
+	   }
+	   for(i=mid;i>=lb;i--)
+	   {
+	       if(a[i]==k)
+	       {
+	           c++;
+	       }
+	   }
+	}
+	if(c==0)
+	{
+	    cout<<"Key not present";
+	}
+	else
+	{
+	    cout<<k<<"-"<<c-1;
+	}
+}
+	
