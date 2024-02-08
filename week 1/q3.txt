@@ -1,1 +1,70 @@
+#include <iostream>
+using namespace std;
+int expsearch(int [],int,int);
+int linearsearch(int [],int,int,int);
+int main()
+{
+    int tc,i,j;
+    cout<<"enter number of test casses"<<endl;
+    cin>>tc;
+    for(i=0;i<tc;i++)
+    {
+        int n,a[100],key,pos;
+        cout<<"enter size of array"<<endl;
+        cin>>n;
+        cout<<"enter elements"<<endl;
+        for(j=0;j<n;j++)
+        {
+            cin>>a[j];
+        }
+        cout<<"enter element to be searched"<<endl;
+        cin>>key;
+        pos=expsearch(a,n,key);
+        if(pos==0)
+        {
+            cout<<"not present"<<endl;
+        }
+        else
+        {
+            cout<<"present: "<<pos<<endl;
+        }
+     }
+     return 0;
+    
+}
 
+int expsearch(int a[],int n,int key)
+{	
+	int i=1,pos;
+	if(a[0]==key)
+	{
+		return 1;
+	}
+	else
+	{
+		while(i<n&&a[i]<=key)
+		{
+			i=i*2;
+		}
+	}
+	pos=linearsearch(a,i/2,min(i,n-1),key);
+	if(a[pos]==key)
+    	{
+       		return pos+1;
+    	}	
+    	else
+    	{
+        	return 0;
+    	}
+}
+int linearsearch(int a[],int j,int m,int key)
+{
+	for(int i=j;i<=m;i++)
+	{
+		if(a[i]==key)
+		{
+			return i;
+		}
+	}
+	return 0;
+}
